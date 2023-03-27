@@ -42,3 +42,30 @@ When you click on the button to open the site you do not need to close the plugi
 
 ## Project Structure
 
+The project has three main points: the class that implements action, the dialog windown class and the plugin settings classes.
+
+## Action
+
+According to the documentation, the plugin must have a class that implements the `AnAction` Interface. This class is `LinksLibraryAction`, it has the method `update` that implements the code that enables or disables an action and the method `actionPerformed` that implements the code that executes when an action is invoked by the user (in this case - opens the dialog window).
+
+The action must also be registered in `plugin.xml` file:
+
+```
+<action id="com.jetbrains.internship.wt.plugin.LinksLibraryAction"
+        class="com.jetbrains.internship.wt.plugin.LinksLibraryAction" text="Links Library Demo"
+        description="Stores links">
+    <synonym text="Link"/>
+    <add-to-group group-id="Internal.UI.Demos" anchor="last"/>
+</action>
+```
+
+Here you can also configure the plugin. In addition to configuring the plugin group id, I also added the ability to search for it by the name `Link`.
+
+
+
+
+
+
+
+
+
