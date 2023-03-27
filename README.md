@@ -1,6 +1,8 @@
 # Link Library Plugin
 The repository contains a solution of the test task in [WebTeam](https://internship.jetbrains.com/projects/1332/).
 
+The plugin impelements Link Library for IntelliJ IDEA, you can save your links and open them directly in the editor.
+
 *Implemented with Kotlin*
 
 ## Links
