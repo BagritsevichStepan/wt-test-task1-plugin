@@ -5,17 +5,17 @@
 
     <!-- Public plugin name should be written in Title Case.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-name -->
-    <name>Plugin</name>
+    <name>Link Library</name>
 
     <!-- A displayed Vendor name or Organization ID displayed on the Plugins Page. -->
-    <vendor email="support@yourcompany.com" url="https://www.yourcompany.com">YourCompany</vendor>
+    <vendor email="bagr.stepan@gmail.com" url="https://github.com/BagritsevichStepan">Bagritsevich Stepan</vendor>
 
     <!-- Description of the plugin displayed on the Plugin Page and IDE Plugin Manager.
          Simple HTML elements (text formatting, paragraphs, and lists) can be added inside of <![CDATA[ ]]> tag.
          Guidelines: https://plugins.jetbrains.com/docs/marketplace/plugin-overview-page.html#plugin-description -->
     <description><![CDATA[
-    Enter short description for your plugin here.<br>
-    <em>most HTML tags may be used</em>
+    Plugin implements link library.
+    Links will open in internal IntelliJ browser.
   ]]></description>
 
     <!-- Product and plugin compatibility requirements.
@@ -25,6 +25,19 @@
     <!-- Extension points defined by the plugin.
          Read more: https://plugins.jetbrains.com/docs/intellij/plugin-extension-points.html -->
     <extensions defaultExtensionNs="com.intellij">
-
+        <applicationService serviceImplementation="com.jetbrains.internship.wt.plugin.settings.LinksLibrarySettingsState"/>
+        <applicationConfigurable
+                parentId="tools"
+                instance="com.jetbrains.internship.wt.plugin.settings.LinksLibraryConfigurable"
+                id="com.jetbrains.internship.wt.plugin.settings.LinksLibraryConfigurable"
+                displayName="Links Library"/>
     </extensions>
+    <actions>
+        <action id="com.jetbrains.internship.wt.plugin.LinksLibraryAction"
+                class="com.jetbrains.internship.wt.plugin.LinksLibraryAction" text="Links Library Demo"
+                description="Stores links">
+            <synonym text="Link"/>
+            <add-to-group group-id="Internal.UI.Demos" anchor="last"/>
+        </action>
+    </actions>
 </idea-plugin>
