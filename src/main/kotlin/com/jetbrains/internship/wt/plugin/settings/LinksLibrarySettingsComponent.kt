@@ -1,20 +1,16 @@
 package com.jetbrains.internship.wt.plugin.settings
 
-import com.intellij.openapi.roots.ui.whenTextModified
 import com.intellij.ui.components.JBCheckBox
-import com.intellij.ui.components.JBList
 import com.intellij.ui.components.JBTextField
-import com.intellij.ui.components.fields.IntegerField
 import com.intellij.util.ui.FormBuilder
-import java.awt.Component
 import javax.swing.*
 import kotlin.streams.toList
 
 class LinksLibrarySettingsComponent {
     private val mainPanel: JPanel
     val openInInternalBrowser: JBCheckBox
-    private var buttonsDescription: List<JBTextField>
-    private var buttonsUrl: List<JBTextField>
+    private val buttonsDescription: List<JBTextField>
+    private val buttonsUrl: List<JBTextField>
 
     init {
         val settings = getSettings()
@@ -24,9 +20,9 @@ class LinksLibrarySettingsComponent {
             settings.openInInternalBrowser
         )
 
-        buttonsDescription = ArrayList(settings.buttonsUrls.keys.stream()
+        buttonsDescription = ArrayList(settings.buttonsDescription.stream()
             .map { JBTextField(it) }.toList())
-        buttonsUrl = ArrayList(settings.buttonsUrls.values.stream()
+        buttonsUrl = ArrayList(settings.buttonsUrl.stream()
             .map { JBTextField(it) }.toList())
 
         val formBuilder = FormBuilder.createFormBuilder()
@@ -41,20 +37,17 @@ class LinksLibrarySettingsComponent {
     }
 
     fun setDefault() {
-        openInInternalBrowser.isSelected = true
         val settings = getSettings()
-        val descriptions = settings.buttonsUrls.keys.toList()
-        val urls = settings.buttonsUrls.values.toList()
+        openInInternalBrowser.isSelected = settings.openInInternalBrowser
         for (i in buttonsDescription.indices) {
-            buttonsDescription[i].text = descriptions[i]
-            buttonsUrl[i].text = urls[i]
+            buttonsDescription[i].text = settings.buttonsDescription[i]
+            buttonsUrl[i].text = settings.buttonsUrl[i]
         }
     }
 
-    fun getButtonsUrls(): Map<String, String> {
-        return IntRange(0, buttonsDescription.size - 1)
-            .associate { buttonsDescription[it].text to buttonsUrl[it].text }
-    }
+    fun getButtonsDescription(): List<String> = buttonsDescription.stream().map { it.text }.toList()
+
+    fun getButtonsUrl(): List<String> = buttonsUrl.stream().map { it.text }.toList()
 
     fun getPanel() = mainPanel
 

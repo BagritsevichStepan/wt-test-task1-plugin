@@ -5,7 +5,6 @@ import com.intellij.openapi.actionSystem.AnActionEvent
 import com.intellij.openapi.project.Project
 import com.jetbrains.internship.wt.plugin.dialog.LinksLibraryDialogWrapper
 import com.jetbrains.internship.wt.plugin.settings.LinksLibrarySettingsState
-import kotlin.streams.toList
 
 class LinksLibraryAction: AnAction() {
     override fun actionPerformed(e: AnActionEvent) {
@@ -13,8 +12,8 @@ class LinksLibraryAction: AnAction() {
         LinksLibraryDialogWrapper(
             e.project!!,
             settings.openInInternalBrowser,
-            settings.buttonsUrls.keys.stream().toList(),
-            settings.buttonsUrls.values.stream().toList()
+            settings.buttonsDescription,
+            settings.buttonsUrl,
         ).show()
     }
 

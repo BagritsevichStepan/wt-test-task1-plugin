@@ -13,9 +13,10 @@ import org.jetbrains.annotations.NotNull
 )
 class LinksLibrarySettingsState: PersistentStateComponent<LinksLibrarySettingsState> {
     var openInInternalBrowser: Boolean = true
-    var buttonsUrls: Map<String, String> = linkedMapOf(
-        "JetBrains" to "https://www.jetbrains.com",
-        "Best plugin" to "https://github.com/BagritsevichStepan/chatGPT-solution-generator-intellij-plugin"
+    var buttonsDescription: List<String> = arrayListOf("JetBrains", "Best plugin")
+    var buttonsUrl: List<String>  = arrayListOf(
+        "https://www.jetbrains.com",
+        "https://github.com/BagritsevichStepan/chatGPT-solution-generator-intellij-plugin"
     )
 
     companion object {

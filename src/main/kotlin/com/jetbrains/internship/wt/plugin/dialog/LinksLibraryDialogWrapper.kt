@@ -35,7 +35,9 @@ class LinksLibraryDialogWrapper(private var project: Project?,
             0, COUNT_BUTTONS_IN_ROW, GAP, GAP))
         for (i in buttonsText.indices) {
             val button = JButton(buttonsText[i])
-            HelpTooltip().setDescription(getDomainName(urls[i])).installOn(button)
+            try {
+                HelpTooltip().setDescription(getDomainName(urls[i])).installOn(button)
+            } catch (ignored: Exception) {}
             button.addActionListener {
                 if (urls[i] != null && urls[i].isNotBlank()) {
                     if (openInInternalBrowser) {

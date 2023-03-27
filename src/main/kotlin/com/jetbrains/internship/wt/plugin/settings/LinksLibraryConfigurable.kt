@@ -21,13 +21,15 @@ class LinksLibraryConfigurable: Configurable {
     override fun isModified(): Boolean {
         val settings = getSettings()
         return !(settings.openInInternalBrowser == settingsComponent?.openInInternalBrowser?.isSelected &&
-                settings.buttonsUrls == settingsComponent?.getButtonsUrls())
+                        settings.buttonsDescription == settingsComponent?.getButtonsDescription() &&
+                        settings.buttonsUrl == settingsComponent?.getButtonsUrl())
     }
 
     override fun apply() {
         val settings = getSettings()
         settings.openInInternalBrowser = settingsComponent?.openInInternalBrowser?.isSelected!!
-        settings.buttonsUrls = settingsComponent?.getButtonsUrls()!!
+        settings.buttonsDescription = settingsComponent?.getButtonsDescription()!!
+        settings.buttonsUrl = settingsComponent?.getButtonsUrl()!!
     }
 
     private fun getSettings() = LinksLibrarySettingsState.getInstance()
